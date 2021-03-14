@@ -6,6 +6,11 @@ Alamofire 를 활용한 여러 요청들을 연습해보는 예제
 - 먼저 Request는 URL 객체를 통해 직접 통신하는 형태와, URLRequest 객체를 만들어서 옵션을 설정하여 통신하는 형태가 있습니다.
 - 다음으로 Response는 설정된 Task의 Completion Handler 형태로 response를 받거나, URLSessionDelgate를 통해 지정된 메소드를 호출하는 형태로 response를 받는 형태가 있습니다.
 
+### Alamofire
+- alamofire 는 HTTP network requests 의 인터페이스를 제공.
+- Foundation 프레임워크에서 제공하는 Apple 의 URL 로딩 시스템을 기반으로 구축. 즉, URLSession 과 URLSessionTask 하위클래스가 핵심이다.
+- Alamofire 는 이러한 API 와 기타여러 API 를 상요학 쉬운 인터페이스로 래핑해서 제공.
+
 ### Alamofire 가 더 편리한 이유는?
 
 ### URLRequestFormParameterEncoder
