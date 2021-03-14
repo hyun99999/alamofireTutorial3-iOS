@@ -7,15 +7,7 @@ Alamofire 를 활용한 여러 요청들을 연습해보는 예제
 - 다음으로 Response는 설정된 Task의 Completion Handler 형태로 response를 받거나, URLSessionDelgate를 통해 지정된 메소드를 호출하는 형태로 response를 받는 형태가 있습니다.
 
 ### Alamofire 가 더 편리한 이유는?
-//:파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, URLRequest 의 HTTP body로 설정.
-        //:URL 인코딩 매개변수가 있는 요청이다.
-        //:옵션으로 인코딩된 문자열이 설정될 위치를 컨트롤 할 수 있다. 즉 destination 옵션을 정할 수 있다.
-        //-GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용(.httpBody)
-        //url 뒤에 붙는 ? 뒤의 요청에 대한 쿼리 문자열로 적용
-        //-POST 에서는 기본적으로 URLRequest 의 http body 로 설정.(.methodDependent)
-        //id ...
-        //qwd ... 로 파라미터가 전달됨.
-        //즉 http.body : "id []=...&pwd []=..." 형태로 전달
+
 ### URLRequestFormParameterEncoder
 ```swift
  AF.request(url, method: .post, parameters: login, encoder: URLEncodedFormParameterEncoder.default).response { response in
@@ -26,11 +18,16 @@ Alamofire 를 활용한 여러 요청들을 연습해보는 예제
                 print(err)
             }
 ```
-//JSONEncoder 를 이용해서 Encodable 값을 인코딩하고 URLRequest 의 httpbody로 설정
-        //-POST 에서는 기본적으로 http body 로 설정해서 json 으로 인코딩 된 값이 전달.
-        //{"id":"1234","pwd":"1234"} 형태로 전달
-        //header 로 authorize
-        //해야함
+- 파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, URLRequest 의 HTTP body로 설정.
+> URL 인코딩 매개변수가 있는 요청이다.
+> 옵션으로 인코딩된 문자열이 설정될 위치를 컨트롤 할 수 있다. 즉 destination 옵션을 정할 수 있다.
+- GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용(.httpBody)
+  - url 뒤에 붙는 ? 뒤의 요청에 대한 쿼리 문자열로 적용
+- POST 에서는 기본적으로 URLRequest 의 http body 로 설정.(.methodDependent)
+  - id ...
+  - qwd ... 로 파라미터가 전달됨.
+  - 즉 http.body : "id []=...&pwd []=..." 형태로 전달
+
 ### JSONParameterEncoder
 ```swift
 AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.default).response { response in
@@ -41,11 +38,10 @@ AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.
                 print(err)
             }
 ```
-//JSONEncoder 를 이용해서 Encodable 값을 인코딩하고 URLRequest 의 httpbody로 설정
-        //-POST 에서는 기본적으로 http body 로 설정해서 json 으로 인코딩 된 값이 전달.
-        //{"id":"1234","pwd":"1234"} 형태로 전달
-        //header 로 authorize
-        //해야함
+- JSONEncoder 를 이용해서 Encodable 값을 인코딩하고 URLRequest 의 httpbody로 설정
+- POST 에서는 기본적으로 http body 로 설정해서 json 으로 인코딩 된 값이 전달.
+  - {"id":"1234","pwd":"1234"} 형태로 전달
+  - header 로 authorize 해야함
 
 ### 통신 결과
 > https://ptsv2.com/t/9s58r-1615734388 통해서 post 통식 확인
