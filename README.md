@@ -1,5 +1,5 @@
 # alamofireTutorial3-iOS
-Alamofire 를 활용한 여러 요청들을 연습해보는 예제
+Alamofire 의 여러 요청과 응답 메서드를 연습해보는 예제
 
 ### URLSession의 Request와 Response
 - URLSession은 다른 HTTP 통신과 마찬가지로 Request와 Response를 기본 구조로 가지고 있습니다.
