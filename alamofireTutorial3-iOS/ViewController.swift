@@ -72,27 +72,37 @@ class ViewController: UIViewController {
             "id":id,
             "pwd":pwd]
         
-        AF.request(url, method: .post, parameters: login, encoder: URLEncodedFormParameterEncoder.default).response { response in
+//        AF.request(url, method: .post, parameters: login, encoder: URLEncodedFormParameterEncoder.default).response { response in
+//            switch response.result{
+//            case .success:
+//                print("POST success!")
+//            case .failure(let err):
+//                print(err)
+//            }
+        AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.default).response { response in
             switch response.result{
             case .success:
                 print("POST success!")
             case .failure(let err):
                 print(err)
             }
+            
         }
         //*URLEncodedFormParameterEncoder*
-        //:파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, request 의 HTTP body로 설정.
+        //:파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, URLRequest 의 HTTP body로 설정.
         //:URL 인코딩 매개변수가 있는 요청이다.
-        //:옵션으로 인코딩된 문자열이 설정될 위치를 컨트롤 할 수 있다.
-        //-GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용
+        //:옵션으로 인코딩된 문자열이 설정될 위치를 컨트롤 할 수 있다. 즉 destination 옵션을 정할 수 있다.
+        //-GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용(.httpBody)
         //url 뒤에 붙는 ? 뒤의 요청에 대한 쿼리 문자열로 적용
-        //-POST 에서는 기본적으로 URLRequest 의 http body 로 설정.
+        //-POST 에서는 기본적으로 URLRequest 의 http body 로 설정.(.methodDependent)
         //id ...
         //qwd ... 로 파라미터가 전달됨.
         //즉 http.body : "id []=...&pwd []=..." 형태로 전달
         
         //*JSONParameterEncoder*
-        //parameters
+        //JSONEncoder 를 이용해서 Encodable 값을 인코딩하고 URLRequest 의 httpbody로 설정
+        //-POST 에서는 기본적으로 http body 로 설정해서 json 으로 인코딩 된 값이 전달.
+        //{"id":"1234","pwd":"1234"} 형태로 전달
         //header 로 authorize
         
     }
