@@ -69,15 +69,15 @@ class ViewController: UIViewController {
 //                        print(err)
 //                    }
         }
-        //Response Validation
-        //기본적으로 알라모파이어는 응답내용에 관계없이 완료된 요청을 성공으로 처리한다. validate() 를 지정하면 허용되지 않는 상태코드에 대해서 오류가 생성된다.(200..<300) 보통 200이 성공. 우리가 잘 아는 404.\
-        
-        //GET request 의 response Handling
-        //response : response data 에 대해서 검증하지 않는다. 바로 URLSessionDelegate 로 보냄.
-        //responseData : 서버에서 반환된 Data 를 추출하고 유효성 검사.
-        //responseJSON : 서버에서 반환되 Data 를 Any 타입의 json object 로 변환
-        //responseString : 서버에서 반환된 Data 를 문자열로 변환
-        //URLEncodedFormEncoder : 서버에서 반환된 Data 를 전달된 Decodable 타입으로 변환
+//        Response Validation
+//        기본적으로 알라모파이어는 응답내용에 관계없이 완료된 요청을 성공으로 처리한다. validate() 를 지정하면 허용되지 않는 상태코드에 대해서 오류가 생성된다.(200..<300) 보통 200이 성공. 우리가 잘 아는 404.\
+//
+//        GET request 의 response Handling
+//        response : response data 에 대해서 검증하지 않는다. 바로 URLSessionDelegate 로 보냄.
+//        responseData : 서버에서 반환된 Data 를 추출하고 유효성 검사.
+//        responseJSON : 서버에서 반환되 Data 를 Any 타입의 json object 로 변환
+//        responseString : 서버에서 반환된 Data 를 문자열로 변환
+//        responseDecodable : 서버에서 반환된 Data 를 전달된 Decodable 타입으로 변환
         
     }
     func postTest() {
@@ -93,22 +93,33 @@ class ViewController: UIViewController {
             "id":id,
             "pwd":pwd]
         
-//        AF.request(url, method: .post, parameters: login, encoder: URLEncodedFormParameterEncoder.default).response { response in
-//            switch response.result{
-//            case .success:
-//                print("POST success!")
-//            case .failure(let err):
-//                print(err)
-//            }
-        AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.default).response { response in
+        AF.request(url, method: .post, parameters: login, encoder: URLEncodedFormParameterEncoder.default).response { response in
             switch response.result{
             case .success:
                 print("POST success!")
             case .failure(let err):
                 print(err)
             }
-            
         }
+
+//        AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.default).response { response in
+//            switch response.result{
+//            case .success:
+//                print("POST success!")
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+            
+        //HTTP Headers 사용
+//        let headers: HTTPHeaders = [
+//            .authorization(username: "Username", password: "Password"),
+//            .accept("application/json")
+//        ]
+//        AF.request(url, headers: headers).responseJSON { response in
+//            print("POST success!")
+//        }
+
         //*URLEncodedFormParameterEncoder*
         //:파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, URLRequest 의 HTTP body로 설정.
         //:URL 인코딩 매개변수가 있는 요청이다.
@@ -124,6 +135,7 @@ class ViewController: UIViewController {
         //JSONEncoder 를 이용해서 Encodable 값을 인코딩하고 URLRequest 의 httpbody로 설정
         //-POST 에서는 기본적으로 http body 로 설정해서 json 으로 인코딩 된 값이 전달.
         //{"id":"1234","pwd":"1234"} 형태로 전달
+        
         //header 로 authorize
         //해야함
         
