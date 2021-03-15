@@ -53,11 +53,11 @@ AF.request(url, method: .post, parameters: login, encoder: JSONParameterEncoder.
 - validate() 를 지정하면 허용되지 않는 상태코드에 대해서 오류가 생성된다.(200..<300) 보통 200이 성공. 우리가 잘 아는 404.\
         
 ### GET request 의 response Handling
-response : response data 에 대해서 검증하지 않는다. 바로 URLSessionDelegate 로 보냄.
-responseData : 서버에서 반환된 Data 를 추출하고 유효성 검사.
-responseJSON : 서버에서 반환되 Data 를 Any 타입의 json object 로 변환
-responseString : 서버에서 반환된 Data 를 문자열로 변환
-responseDecodable : 서버에서 반환된 Data 를 전달된 Decodable 타입으로 변환
+- response : response data 에 대해서 검증하지 않는다. 바로 URLSessionDelegate 로 보냄.
+- responseData : 서버에서 반환된 Data 를 추출하고 유효성 검사.
+- responseJSON : 서버에서 반환되 Data 를 Any 타입의 json object 로 변환
+- responseString : 서버에서 반환된 Data 를 문자열로 변환
+- responseDecodable : 서버에서 반환된 Data 를 전달된 Decodable 타입으로 변환
 
 ### 통신 결과
 > https://ptsv2.com/t/9s58r-1615734388 통해서 post 통식 확인
