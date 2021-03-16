@@ -24,8 +24,8 @@ Alamofire 의 response handling, request http body 를 살펴보는 튜토리얼
 - 외부 라이브러리를 사용한다는 것은 유지부분에서 단점이 될 수 있지만 잘 관리되면 매우 편하다.
 - `AF.request()` 구문을 통해 쉽게 작성가능.
 - response handlers 를 통해서 서버로부터의 Data 를 편하게 처리가능하며 성공과 실패를 스위치문으로 표현하기가 편하다.
-> URLSession 에서는 completion handler 에 메서드를 작성.
-- response validate() 즉 유효성 검사가 편하다.
+> URLSession 에서는 completion handler 에 메서드를 작성. 통신에 성공한 경우 그 Data를 활용한 직렬화도 분리해서 진행.
+-  validate() 즉 유효성 검사가 편하다.
 
 ### URLRequestFormParameterEncoder
 ```swift
