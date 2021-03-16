@@ -40,9 +40,9 @@ Alamofire 의 response handling, request http body 를 살펴보는 튜토리얼
 - 파라미터를 인코딩해 기존의 URL 쿼리 문자열로 추가, URLRequest 의 HTTP body로 설정.
 > URL 인코딩 매개변수가 있는 요청이다.
 > 옵션으로 인코딩된 문자열이 설정될 위치를 컨트롤 할 수 있다. 즉 destination 옵션을 정할 수 있다.
-- GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용(.httpBody)
+- GET 에서는 기본적으로 .get 요청에 대한 쿼리 문자열에 적용(.methodDependent)
   - url 뒤에 붙는 ? 뒤의 요청에 대한 쿼리 문자열로 적용
-- POST 에서는 기본적으로 URLRequest 의 http body 로 설정.(.methodDependent)
+- POST 에서는 기본적으로 URLRequest 의 http body 로 설정(.httpBody)
   - id ...
   - qwd ... 로 파라미터가 전달됨.
   - 즉 http.body : "id []=...&pwd []=..." 형태로 전달
