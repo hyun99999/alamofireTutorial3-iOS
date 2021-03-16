@@ -5,13 +5,27 @@ Alamofire 의 response handling, request http body 를 살펴보는 튜토리얼
 - URLSession은 다른 HTTP 통신과 마찬가지로 Request와 Response를 기본 구조로 가지고 있습니다.
 - 먼저 Request는 URL 객체를 통해 직접 통신하는 형태와, URLRequest 객체를 만들어서 옵션을 설정하여 통신하는 형태가 있습니다.
 - 다음으로 Response는 설정된 Task의 Completion Handler 형태로 response를 받거나, URLSessionDelgate를 통해 지정된 메소드를 호출하는 형태로 response를 받는 형태가 있습니다.
+ - 일반적으로 `Completion Handler` 를 통해서 response 를 작성하지만 앱이 백그라운드 상태에서 파일 다운로드를 받도록 지원하거나 인증과 캐싱을 default 옵션으로 사용하지 않는 상황과 같은 경우 `Delegate` 패턴을 사용한다.
+
+### URLSession life cycle
+1. `Session` configuration 을 결정하고 `Session` 을 생성한다.
+2. 통신할 URL 과 Request 객체를 설정.
+3. 사용할 `Task`를 결정하고 그에 맞는 `Completion Handler`나 `Delegate` 메서드를 작성.
+4. 해당 `Task` 를 실행.
+5. `Task` 완료 후 `Completion Handler` 실행.
 
 ### Alamofire
 - alamofire 는 HTTP network requests 의 인터페이스를 제공.
 - Foundation 프레임워크에서 제공하는 Apple 의 URL 로딩 시스템을 기반으로 구축. 즉, URLSession 과 URLSessionTask 하위클래스가 핵심이다.
 - Alamofire 는 이러한 API 와 기타여러 API 를 상요학 쉬운 인터페이스로 래핑해서 제공.
+- (UI 관련 작업은 메인쓰레드에서만 가능하다.)
 
 ### Alamofire 가 더 편리한 이유는?
+- 외부 라이브러리를 사용한다는 것은 유지부분에서 단점이 될 수 있지만 잘 관리되면 매우 편하다.
+- `AF.request()` 구문을 통해 쉽게 작성가능.
+- response handlers 를 통해서 서버로부터의 Data 를 편하게 처리가능하며 성공과 실패를 스위치문으로 표현하기가 편하다.
+> URLSession 에서는 completion handler 에 메서드를 작성.
+- response validate() 즉 유효성 검사가 편하다.
 
 ### URLRequestFormParameterEncoder
 ```swift
